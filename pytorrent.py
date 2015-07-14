@@ -28,16 +28,16 @@ metainfo = bencode.bdecode(open(os.path.expanduser(''.join(sys.argv[2:])),'rb').
 #print metainfo
 
 if sys.argv[1] == 'tracker':
-    print urlparse.urlparse(metainfo['announce']).hostname
+    sys.stdout.write(urlparse.urlparse(metainfo['announce']).hostname)
     sys.exit(0)
 elif sys.argv[1] == 'infohash':
-    print hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper()
+    sys.stdout.write(hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper())
     sys.exit(0)
 elif sys.argv[1] == 'base_directory':
-    print os.path.join(os.path.expanduser('~/rtorrent/torrents'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper())
+    sys.stdout.write(os.path.join(os.path.expanduser('~/rtorrent/torrents'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper()))
     sys.exit(0)
 elif sys.argv[1] == 'initial_infohash_directory':
-    print os.path.join(os.path.expanduser('~/rtorrent/torrents'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper())
+    sys.stdout.write(os.path.join(os.path.expanduser('~/rtorrent/torrents'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper()))
     sys.exit(0)
 elif sys.argv[1] == 'complete_directory':
     name = metainfo['info']['name']
@@ -63,5 +63,5 @@ elif sys.argv[1] == 'complete_directory':
     	torrentfolder = to_unicode(name)+'/'
     else:
     	torrentfolder = ''
-    print os.path.join(os.path.expanduser('~/rtorrent/completed'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper(),torrentfolder)
+    sys.stdout.write(os.path.join(os.path.expanduser('~/rtorrent/completed'),hashlib.sha1(bencode.bencode(metainfo['info'])).hexdigest().upper(),torrentfolder))
     sys.exit(0)
