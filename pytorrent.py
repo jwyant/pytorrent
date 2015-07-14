@@ -23,7 +23,7 @@ def to_unicode(text):
 			# Give up, return byte string in the hope things work out
 			return text
 
-metainfo = bencode.bdecode(open(os.path.expanduser(''.join(sys.argv[2:])),'rb').read())
+metainfo = bencode.bdecode(open(os.path.expanduser(' '.join(sys.argv[2:])),'rb').read())
 
 if sys.argv[1] == 'tracker':
     sys.stdout.write(urlparse.urlparse(metainfo['announce']).hostname)
